@@ -1,0 +1,94 @@
+/* ------------------------------------------ Border-radius mixin: @include border-radius(5px); ); */
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+
+/* ------------------------------------------ Transition mixin: @include transition(color .3s ease); */
+
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}
+
+/* ------------------------------------------ Rem mixin (adds fallback pixel size for IE8 and below): @include font-size(40px); */
+
+@function calculateRem($size) {
+  $remSize: $size / 16px;
+  @return $remSize * 1rem;
+}
+
+@mixin font-size($size) {
+  font-size: $size;
+  font-size: calculateRem($size);
+}
+
+@mixin line-height($size) {
+  line-height: $size;
+  line-height: calculateRem($size);
+}
+
+/* ------------------------------------------ Breakpoint Mixin */
+
+@mixin bp-med-desktop {
+  @media only screen and (max-width: 1374px) {
+    @content;
+  }
+}
+@mixin bp-sml-desktop {
+  @media only screen and (max-width: 1100px) {
+    @content;
+  }
+}
+
+@mixin bp-tablet {
+  @media only screen and (max-width: 1000px) {
+    @content;
+  }
+}
+
+@mixin bp-mobile {
+  @media only screen and  (max-width: 767px) {
+    @content;
+  }
+}
+@mixin bp-sml-mobile-mobile {
+  @media only screen and (min-width: 341px) and (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin bp-mobile-tablet {
+  @media only screen and (min-width: 767px) and (max-width: 1000px) {
+    @content;
+  }
+}
+@mixin bp-sml-mobile {
+  @media only screen and (max-width: 340px) {
+    @content;
+  }
+}
+@mixin bp-sml-mobile-desktop {
+  @media only screen and (min-width: 341px) and (max-width: 1100px) {
+    @content;
+  }
+}
+
+/* ------------------------------------------ Clearfix Mixin: @extend %clearfix; (add to container )*/
+
+%clearfix {
+  *zoom: 1;
+  &:before, &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
